@@ -1,0 +1,20 @@
+<input type="hidden" id="api-token" value="<%=@user.token%>">
+
+
+
+
+<h3>Welcome back <%=@user.username%></h3>
+<%=button_to "Log Out", '/sessions', method: :delete%>
+
+<form class="new-picture" action="/api/pictures" method="post">
+  <input type="text" name="picture[url]" placeholder="..url">
+  <input type="submit" name="url" value="New Pic">
+
+</form>
+
+<ul class='pictures'>
+
+</ul>
+
+
+  <%= javascript_include_tag 'users'%>

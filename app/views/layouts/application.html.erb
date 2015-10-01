@@ -2,9 +2,19 @@
 <html>
 <head>
   <title>PictureVote</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <script id="picture-view" type="text/template">
+    <img class="picture" src="<%%=url%>" alt="" />
+    <button type="button" class="remove">X</button>
+
+  </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
+
+
+
 </head>
 <body>
 
