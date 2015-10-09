@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :pictures, except: [:new, :edit]
   end
 
+  root 'users#log_in'
 
   get '/users/profile' => 'users#profile', as: :profile
   get '/users/log_in' => 'users#log_in', as: :log_in
