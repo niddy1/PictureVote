@@ -12,4 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require_image-picker
  */
+
+ .picture{
+   width: 150px;
+   height: 150px;
+ }

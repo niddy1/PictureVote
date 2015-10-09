@@ -3,13 +3,20 @@ class Api::PicturesController < ApplicationController
   # api_pictures GET    /api/pictures(.:format)     api/pictures#index
   def index
     user = User.find_by({ token: env['HTTP_TOKEN'] })
+    @pictures = Picture.all
     render json: user.pictures
+
   end
+
+  # def new
+  #   @picture = Picture.new
+  # end
 
   #              POST   /api/pictures(.:format)     api/pictures#create
   def create
     user = User.find_by({ token: env['HTTP_TOKEN'] })
     picture = user.pictures.create(picture_params)
+    # @picture = user.pictures.create(picture_params)
     render json: picture
   end
 
@@ -38,6 +45,6 @@ class Api::PicturesController < ApplicationController
   private
 
   def picture_params
-    params.require(:picture).permit(:url)
+    params.require(:picture).permit(:url, :image)
   end
 end

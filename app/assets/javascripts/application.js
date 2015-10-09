@@ -15,3 +15,5 @@
 //= require turbolinks
 //= require underscore
 //= require backbone
+//= require image-picker
+//= require users

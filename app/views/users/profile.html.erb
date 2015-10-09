@@ -4,17 +4,39 @@
 
 
 <h3>Welcome back <%=@user.username%></h3>
+
+
+
 <%=button_to "Log Out", '/sessions', method: :delete%>
 
-<form class="new-picture" action="/api/pictures" method="post">
+<!-- <form class="new-picture" action="/api/pictures" method="post">
   <input type="text" name="picture[url]" placeholder="..url">
   <input type="submit" name="url" value="New Pic">
 
+</form> -->
+
+<form class="picture-maker" action="/api/pictures" method="post">
+  <h5>Image</h5><input type="file" id="url">
+  <!-- <h5>Description</h5><input type="text" id="description"> -->
+  <input type="submit">
 </form>
 
-<ul class='pictures'>
+<% @pictures.each do |picture| %>
+  <img src="<%= picture.url %>" alt="" />
+<% end %>
 
-</ul>
 
-
-  <%= javascript_include_tag 'users'%>
+<!-- <form class="" action="index.html" method="post">
+  <select class="image-picker limit_callback show-html pictures" data-limit="2" multiple="multiple">
+    <option data-img-src="http://placekitten.com/220/200" value="1">Cute Kitten 1</option>
+    <option data-img-src="http://placekitten.com/180/200" value="2">Cute Kitten 2</option>
+    <option data-img-src="http://placekitten.com/130/200" value="3">Cute Kitten 3</option>
+    <option data-img-src="http://placekitten.com/270/200" value="4">Cute Kitten 4</option>
+  </select>
+</form> -->
+<form class="" action="index.html" method="post">
+  <select class="image-picker show-html pictures" data-limit="2" multiple="multiple">
+  </select>
+</form>
+<%= javascript_include_tag 'users'%>
+<%= javascript_include_tag 'image-picker'%>

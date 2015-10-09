@@ -18,6 +18,12 @@ end
 def profile
   authenticate!
   @user = current_user
+  @pictures = Picture.all
+end
+
+def show
+  user = User.find_by({ token: env['HTTP_TOKEN'] })
+  @picture = @user.pictures.find(params[:id])
 end
 
 #  log_in GET  /users/log_in(.:format)  users#log_in

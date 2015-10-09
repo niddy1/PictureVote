@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/users/profile' => 'users#profile', as: :profile
   get '/users/log_in' => 'users#log_in', as: :log_in
+  get '/users/show' => 'users#show'
   resources :users, only: [:new, :create]
   #login and logout
   post '/sessions' => 'sessions#create'

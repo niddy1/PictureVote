@@ -7,6 +7,39 @@ $.ajaxSetup({
   }
 });
 
+//
+// $('.picture-maker').on('submit', function(e){
+//   e.preventDefault();
+//
+//   var data = {};
+//
+//   var fileInput = $('#url')[0];
+//   var file = fileInput.files[0];
+//   var reader = new FileReader();
+//
+//   reader.readAsDataURL(file);
+//
+//   reader.onloadend = function () {
+//     data.url = reader.result;
+//     // data.description = $('#description').val();
+//
+//     $.ajax({
+//       method: 'post',
+//       url: '/api/pictures',
+//       data: {'post': data},
+//       success: function(response){
+//         console.log('good')
+//         window.location = '/';
+//       }
+//     });
+//   }
+//
+// });
+
+
+
+
+//****************************************************************************
 
 var Picture = Backbone.Model.extend({});
 var PictureCollection = Backbone.Collection.extend({
@@ -15,7 +48,7 @@ var PictureCollection = Backbone.Collection.extend({
 });
 
 var PictureView = Backbone.View.extend({
-  tagName: 'li',
+  tagName: 'option',
   className: 'picture',
   template: _.template( $('#picture-view').html() ),
   render: function(){
@@ -55,8 +88,23 @@ var picturesPainter = new PictureListView({
 });
 allThePictures.fetch();
 
-$('form.new-picture').on('submit', function(e){
+$('form.picture-maker').on('submit', function(e){
   e.preventDefault();
-  var newUrl = $(this).find('input[name="picture[url]"]').val();
-  allThePictures.create({url: newUrl});
+  var data = {};
+
+  var fileInput = $('#url')[0];
+  var file = fileInput.files[0];
+  var reader = new FileReader();
+
+  reader.readAsDataURL(file);
+
+  reader.onloadend = function () {
+    data.url = reader.result;
+    allThePictures.create(data);
+  }
+
 });
+// $(document).ready(function (){
+//   $(".image_picker_selector").imagepicker({limit: 2})
+//    hide_select: true
+// });
