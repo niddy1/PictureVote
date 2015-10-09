@@ -104,7 +104,8 @@ $('form.picture-maker').on('submit', function(e){
   }
 
 });
-// $(document).ready(function (){
-//   $(".image_picker_selector").imagepicker({limit: 2})
-//    hide_select: true
-// });
+$(document).ready(function (){
+  $(".image_picker_selector").imagepicker({limit: 2})
+   hide_select: true
+   $("select").imagepicker({ selected : function (selected){}, })
+});

@@ -21,22 +21,27 @@
   <input type="submit">
 </form>
 
-<% @pictures.each do |picture| %>
-  <img src="<%= picture.url %>" alt="" />
-<% end %>
-
-
-<!-- <form class="" action="index.html" method="post">
-  <select class="image-picker limit_callback show-html pictures" data-limit="2" multiple="multiple">
-    <option data-img-src="http://placekitten.com/220/200" value="1">Cute Kitten 1</option>
-    <option data-img-src="http://placekitten.com/180/200" value="2">Cute Kitten 2</option>
-    <option data-img-src="http://placekitten.com/130/200" value="3">Cute Kitten 3</option>
-    <option data-img-src="http://placekitten.com/270/200" value="4">Cute Kitten 4</option>
+<form class="poll-create" action="/polls" method="post">
+  <select class="image-picker show-html picture" data-limit="2" multiple="multiple" name="poll[]">
+    <% @user.pictures.each do |picture| %>
+      <option data-img-src="<%= picture.url %>" value="<%=picture.id%>"><%=picture.id%></option>
+    <% end %>
   </select>
-</form> -->
+  <input type="hidden" name="pollss" value="<%=@user.id%>">
+  <input type="submit" value="Create Poll">
+</form>
+
+
+<!-- <select class="image-picker show-html" data-limit="2" multiple="multiple">
+  <option data-img-src="http://placekitten.com/220/200" value="1">Cute Kitten 1</option>
+  <option data-img-src="http://placekitten.com/180/200" value="2">Cute Kitten 2</option>
+  <option data-img-src="http://placekitten.com/130/200" value="3">Cute Kitten 3</option>
+  <option data-img-src="http://placekitten.com/270/200" value="4">Cute Kitten 4</option>
+</select> -->
+
 <form class="" action="index.html" method="post">
   <select class="image-picker show-html pictures" data-limit="2" multiple="multiple">
   </select>
 </form>
-<%= javascript_include_tag 'users'%>
 <%= javascript_include_tag 'image-picker'%>
+<%= javascript_include_tag 'users'%>

@@ -18,18 +18,20 @@ ActiveRecord::Schema.define(version: 20151008175946) do
 
   create_table "pictures", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "url"
+    t.text     "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "image"
   end
 
   create_table "polls", force: :cascade do |t|
-    t.text     "picture_1"
-    t.text     "picture_2"
+    t.integer  "picture_1_votes", default: 0
+    t.integer  "picture_1_id"
+    t.integer  "picture_2_votes", default: 0
+    t.integer  "picture_2_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|

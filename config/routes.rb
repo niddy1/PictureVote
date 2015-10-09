@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   root 'users#log_in'
 
+
+
   get '/users/profile' => 'users#profile', as: :profile
   get '/users/log_in' => 'users#log_in', as: :log_in
   get '/users/show' => 'users#show'
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
   post '/sessions' => 'sessions#create'
   delete '/sessions' => 'sessions#destroy'
   # resources :sessions, only: [:create, :destroy]
+
+  post '/polls' => 'polls#create'
 
    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

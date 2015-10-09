@@ -15,7 +15,7 @@
  *= require_image-picker
  */
 
- .picture{
+ .image_picker_image{
    width: 150px;
    height: 150px;
  }
