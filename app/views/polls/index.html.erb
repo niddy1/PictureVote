@@ -1,0 +1,8 @@
+<h3>all the polls</h3>
+
+
+<%@polls.each do |po|%>
+<li>User ID: <%=po.user_id%></li>
+<%=po.picture_1_id%> vs. <%=po.picture_2_id%>
+
+<%end%>

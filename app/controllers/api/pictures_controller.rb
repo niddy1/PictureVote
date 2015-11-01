@@ -14,7 +14,9 @@ class Api::PicturesController < ApplicationController
 
   #              POST   /api/pictures(.:format)     api/pictures#create
   def create
+
     user = User.find_by({ token: env['HTTP_TOKEN'] })
+
     picture = user.pictures.create(picture_params)
     # @picture = user.pictures.create(picture_params)
     render json: picture

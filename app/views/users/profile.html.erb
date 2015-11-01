@@ -1,18 +1,12 @@
 <input type="hidden" id="api-token" value="<%=@user.token%>">
 
-
-
-
 <h3>Welcome back <%=@user.username%></h3>
-
-
 
 <%=button_to "Log Out", '/sessions', method: :delete%>
 
 <!-- <form class="new-picture" action="/api/pictures" method="post">
   <input type="text" name="picture[url]" placeholder="..url">
   <input type="submit" name="url" value="New Pic">
-
 </form> -->
 
 <form class="picture-maker" action="/api/pictures" method="post">
@@ -27,7 +21,9 @@
       <option data-img-src="<%= picture.url %>" value="<%=picture.id%>"><%=picture.id%></option>
     <% end %>
   </select>
-  <input type="hidden" name="pollss" value="<%=@user.id%>">
+  <input type="hidden" name="user[id]" value="<%=@user.id%>">
+  <!-- <input type="hidden" name="poll[user_id]" value="<%=@user.id%>">
+  <input type="hidden" name="pollss" value="<%=@user.id%>"> -->
   <input type="submit" value="Create Poll">
 </form>
 
@@ -39,9 +35,9 @@
   <option data-img-src="http://placekitten.com/270/200" value="4">Cute Kitten 4</option>
 </select> -->
 
-<form class="" action="index.html" method="post">
+<!-- <form class="" action="index.html" method="post">
   <select class="image-picker show-html pictures" data-limit="2" multiple="multiple">
   </select>
-</form>
+</form> -->
 <%= javascript_include_tag 'image-picker'%>
 <%= javascript_include_tag 'users'%>
