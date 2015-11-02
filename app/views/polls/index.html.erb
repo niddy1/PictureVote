@@ -3,6 +3,31 @@
 
 <%@polls.each do |po|%>
 <li>User ID: <%=po.user_id%></li>
+<li>----Poll ID:<%=po.id%>----</li>
 <%=po.picture_1_id%> vs. <%=po.picture_2_id%>
+<!-- <img src="<%=@pictures[po.picture_1_id].url%>" alt="" />
+<img src="<%=@pictures[po.picture_2_id].url%>" alt="" /> -->
+
+
+<form class="poll-edit" action="/polls" method="post">
+  <input type="hidden" name="_method" value="put">
+  <select id="poll-vote" class="image-picker show-html picture" name="pollchoice">
+      <option disabled selected> -- select an option -- </option>
+      <option data-img-src="<%=@pictures[po.picture_1_id - 1].url%>" value="<%=po.picture_1_id%>"></option>
+      <option data-img-src="<%=@pictures[po.picture_2_id - 1].url%>" value="<%=po.picture_2_id%>"></option>
+
+  </select>
+  <input type="hidden" name="poll" value="<%=po.id%>">
+  <input type="hidden" name="user[id]" value="<%=@user.id%>">
+  <input type="submit" value="Pick">
+</form>
 
 <%end%>
+
+
+<script type="text/javascript">
+  if(document.getElementById('poll-vote').value == "5") {
+     //Do something
+     alert('hi')
+  }
+</script>

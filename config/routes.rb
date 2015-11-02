@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   post '/polls' => 'polls#create'
   get '/polls'  => 'polls#index'
+  put '/polls' => 'polls#edit'
 
    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

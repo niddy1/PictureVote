@@ -14,10 +14,17 @@
   <!-- <h5>Description</h5><input type="text" id="description"> -->
   <input type="submit">
 </form>
+<!-- 
+comment out later -->
+<% @user.pictures.each do |picture| %>
+  <%=picture.id%>
+  <%end%>
+
 
 <form class="poll-create" action="/polls" method="post">
   <select class="image-picker show-html picture" data-limit="2" multiple="multiple" name="poll[]">
     <% @user.pictures.each do |picture| %>
+      <%=picture.id%>
       <option data-img-src="<%= picture.url %>" value="<%=picture.id%>"><%=picture.id%></option>
     <% end %>
   </select>
