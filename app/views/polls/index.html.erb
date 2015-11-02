@@ -1,33 +1,52 @@
 <h3>all the polls</h3>
 
 
+
 <%@polls.each do |po|%>
 <li>User ID: <%=po.user_id%></li>
 <li>----Poll ID:<%=po.id%>----</li>
 <%=po.picture_1_id%> vs. <%=po.picture_2_id%>
-<!-- <img src="<%=@pictures[po.picture_1_id].url%>" alt="" />
-<img src="<%=@pictures[po.picture_2_id].url%>" alt="" /> -->
 
 
-<form class="poll-edit" action="/polls" method="post">
-  <input type="hidden" name="_method" value="put">
-  <select id="poll-vote" class="image-picker show-html picture" name="pollchoice">
-      <option disabled selected> -- select an option -- </option>
-      <option data-img-src="<%=@pictures[po.picture_1_id - 1].url%>" value="<%=po.picture_1_id%>"></option>
-      <option data-img-src="<%=@pictures[po.picture_2_id - 1].url%>" value="<%=po.picture_2_id%>"></option>
 
-  </select>
-  <input type="hidden" name="poll" value="<%=po.id%>">
-  <input type="hidden" name="user[id]" value="<%=@user.id%>">
-  <input type="submit" value="Pick">
-</form>
+  <form class="poll-edit" action="/polls" method="post">
+    <input type="hidden" name="_method" value="put">
+    <select id="poll-vote" class="image-picker show-html picture" name="pollchoice">
+        <option disabled selected> -- select an option -- </option>
+
+              <option data= "<%po.picture_1_votes%>"data-img-src="<%=@pictures[po.picture_1_id - 1].url%>" value="<%=po.picture_1_id%>"></option>
+
+
+          <option data-img-src="<%=@pictures[po.picture_2_id - 1].url%>" value="<%=po.picture_2_id%>"></option>
+
+
+
+    </select>
+    <input type="hidden" name="poll" value="<%=po.id%>">
+    <input type="hidden" name="user[id]" value="<%=@user.id%>">
+    <input id="poll-vote-btn" type="submit" value="Pick">
+  </form>
+
 
 <%end%>
+<div id="modal">
+  <div class="modal-content">
+    <span id="close-modal">X</span>
+    <div class="modal-body">
 
+      <div class="modal-inner">
 
+        <h3 class="modal-headers">Your vote has been logged!</h3>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
-  if(document.getElementById('poll-vote').value == "5") {
-     //Do something
-     alert('hi')
-  }
+
+
+$('.poll-edit').on('submit', function(){
+    $("#modal").toggle();
+  
+});
+
 </script>

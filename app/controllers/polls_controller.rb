@@ -4,7 +4,7 @@ class PollsController < ApplicationController
   def index
     authenticate!
     @user = current_user
-    @polls = Poll.all
+    @polls = Poll.all.sample(1)
     @pictures = Picture.all
   end
 

@@ -16,6 +16,76 @@
  */
 
  .image_picker_image{
+   width: 450px;
+   height: 450px;
+   border: black 4px solid;
+ }
+ .pollshow{
    width: 150px;
    height: 150px;
+   border: black 2px solid;
+ }
+
+ #modal {
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: none;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, .4);
+ }
+
+ #close-modal {
+   position: absolute;
+   left: 91%;
+   margin-top: 4%;
+   z-index: 2;
+   font-size: 2em;
+   border-radius: 50%;
+   border: 3px solid white;
+   height: 1em;
+   width: 1em;
+   line-height: 0.95;
+   text-align: center;
+   color: white;
+   background-color: black;
+ }
+
+ #close-modal:hover {
+   cursor: pointer;
+ }
+
+ .modal-content {
+   position: relative;
+   margin: 0 30%;
+   background-color: white;
+   top: 10%;
+   width: 40%;
+ }
+
+ .modal-body {
+   position: absolute;
+   width: 100%;
+   top: 10px;
+   background-color: white;
+   border: 10px solid white;
+   z-index: 1;
+ }
+
+ .modal-inner {
+   width: 100%;
+   height: 350px;
+   background: url(gif1.gif) no-repeat center center fixed;
+ }
+
+ .modal-inner h3 {
+   top: 40px;
+   color: white;
+   text-align: center;
+   text-shadow: 0px 0px 10px #000000;
+ }
+
+ .dashboard-modal {
+   width: 100%
  }
