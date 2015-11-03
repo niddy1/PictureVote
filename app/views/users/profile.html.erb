@@ -1,6 +1,6 @@
 <input type="hidden" id="api-token" value="<%=@user.token%>">
 
-<h3>Welcome back <%=@user.username%></h3>
+<h3>Welcome back <%=@user.username.capitalize%>!</h3>
 
 <%=button_to "Log Out", '/sessions', method: :delete%>
 
@@ -14,7 +14,7 @@
   <!-- <h5>Description</h5><input type="text" id="description"> -->
   <input type="submit">
 </form>
-<!-- 
+<!--
 comment out later -->
 <% @user.pictures.each do |picture| %>
   <%=picture.id%>
@@ -22,7 +22,7 @@ comment out later -->
 
 
 <form class="poll-create" action="/polls" method="post">
-  <select class="image-picker show-html picture" data-limit="2" multiple="multiple" name="poll[]">
+  <select class="image-picker show-html picture profile-image-upload" data-limit="2" multiple="multiple" name="poll[]">
     <% @user.pictures.each do |picture| %>
       <%=picture.id%>
       <option data-img-src="<%= picture.url %>" value="<%=picture.id%>"><%=picture.id%></option>
@@ -46,5 +46,12 @@ comment out later -->
   <select class="image-picker show-html pictures" data-limit="2" multiple="multiple">
   </select>
 </form> -->
+<style media="screen">
+.image_picker_image{
+  width: 150px;
+  height: 150px;
+border: none;
+}
+</style>
 <%= javascript_include_tag 'image-picker'%>
 <%= javascript_include_tag 'users'%>

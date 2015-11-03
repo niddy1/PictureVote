@@ -8,9 +8,9 @@
 
 
 <li><%= ( ( po.picture_1_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>% votes
-<img class="pollshow" src="<%=@pictures[po.picture_1_id - 1].url%> " alt="" />
+<img class="poll-show" src="<%=@pictures[po.picture_1_id - 1].url%> " alt="" />
 vs.
-<img class="pollshow" src="<%=@pictures[po.picture_2_id - 1].url%> " alt="" />
+<img class="poll-show" src="<%=@pictures[po.picture_2_id - 1].url%> " alt="" />
 <%= ( ( po.picture_2_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>% votes
 </li>
 <br>

@@ -12,13 +12,13 @@ def edit
   #
   poll = Poll.find(params[:poll])
 
-  #  byebug
-  if params[:pollchoice] == poll.picture_1_id.to_s
+    # byebug
+  if params[:pollchoice].split(',')[0] == poll.picture_1_id.to_s
     poll.picture_1_votes+=1
     poll.save()
 
 
-  elsif params[:pollchoice] == poll.picture_2_id.to_s
+  elsif params[:pollchoice].split(',')[0] == poll.picture_2_id.to_s
     poll.picture_2_votes+=1
     poll.save()
   end

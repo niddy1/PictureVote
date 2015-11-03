@@ -9,44 +9,135 @@
 
 
 
-  <form class="poll-edit" action="/polls" method="post">
+  <form id="poll-edit" action="/polls" method="post">
     <input type="hidden" name="_method" value="put">
     <select id="poll-vote" class="image-picker show-html picture" name="pollchoice">
         <option disabled selected> -- select an option -- </option>
-
-              <option data= "<%po.picture_1_votes%>"data-img-src="<%=@pictures[po.picture_1_id - 1].url%>" value="<%=po.picture_1_id%>"></option>
-
-
-          <option data-img-src="<%=@pictures[po.picture_2_id - 1].url%>" value="<%=po.picture_2_id%>"></option>
-
-
-
+        <option data-img-src="<%=@pictures[po.picture_1_id - 1].url%>" value='<%=po.picture_1_id%>,one'></option>
+        <option data-img-src="<%=@pictures[po.picture_2_id - 1].url%>" value='<%=po.picture_2_id%>,two'></option>
     </select>
-    <input type="hidden" name="poll" value="<%=po.id%>">
-    <input type="hidden" name="user[id]" value="<%=@user.id%>">
+    <input id="poll-id" type="hidden" name="poll" value="<%=po.id%>">
+    <input id="poll-user_id" type="hidden" name="user[id]" value="<%=@user.id%>">
     <input id="poll-vote-btn" type="submit" value="Pick">
   </form>
 
 
-<%end%>
+
 <div id="modal">
   <div class="modal-content">
     <span id="close-modal">X</span>
     <div class="modal-body">
 
-      <div class="modal-inner">
 
-        <h3 class="modal-headers">Your vote has been logged!</h3>
-      </div>
+
+        <h3 class="modal-header">Your vote has been logged!</h3>
+        <img class="modal-img"src="<%=@pictures[po.picture_1_id - 1].url%>" alt="" />
+        <p class="modal-data">
+          <%= po.picture_1_votes + 1%>votes
+          <br>
+          <%= ( ( (po.picture_1_votes + 1.to_f) / ( (po.picture_1_votes + 1.to_f) + po.picture_2_votes.to_f) ) * 100).round(2)%>% votes
+        </p>
+
     </div>
   </div>
 </div>
+
+<div id="modal2">
+  <div class="modal-content">
+    <span id="close-modal2">X</span>
+    <div class="modal-body">
+
+
+        <h3 class="modal-header">Your vote has been logged!</h3>
+        <img class="modal-img"src="<%=@pictures[po.picture_2_id - 1].url%>" alt="" />
+        <p class="modal-data">
+          <%= po.picture_2_votes + 1%>votes
+          <br>
+          <%= ( ( (po.picture_2_votes + 1.to_f) / ( (po.picture_1_votes + 1.to_f) + po.picture_2_votes.to_f) ) * 100).round(2)%>% votes
+        </p>
+
+    </div>
+  </div>
+</div>
+
+
+
+<%end%>
 <script type="text/javascript">
 
 
-$('.poll-edit').on('submit', function(){
+$('#poll-edit').on('click', function(e){
+  e.preventDefault();
+  console.log('MEEE: ' + $('#poll-vote').val());
+  console.log('poll_id: ' + $('#poll-id').val() );
+  console.log('user_id: ' + $('#poll-user_id').val());
+
+
+
+  if ($('#poll-vote').val().split(',')[1] === 'one' ) {
+    alert('ji')
     $("#modal").toggle();
-  
+    // $.ajax({
+    //   url: "/polls",
+    //   type: "PUT",
+    //
+    //     poll: {
+    //     picture_1_votes: 200
+    //   }
+    //
+    //
+    // });
+
+
+    // $.put("/polls/1",
+    // {
+    //   poll: {
+    //   picture_1_votes: 200
+    // }
+    // });
+  }
+
+  else if ($('#poll-vote').val().split(',')[1]  === 'two') {
+    $("#modal2").toggle();
+    // alert('pic two')
+
+
+  }
+
+
+
+  // $.put("/polls",
+  //         {
+  //           poll: {
+  //           review: $("#restaurant-review").val(),
+  //           restaurant_name: $("#restaurant-name").val(),
+  //           restaurant_id: $("#restaurant-id").val()
+  //           }
+  //       })
+})
+$("#close-modal").on("click", function() {
+  console.log("You clicked the close button.");
+  $("#modal").toggle();
+
+  console.log('pic_id_chosen: ' + $('#poll-vote').val());
+  console.log('poll_id: ' + $('#poll-id').val() );
+  console.log('user_id: ' + $('#poll-user_id').val());
+  console.log('data: ' + $('#poll-user_id').data());
+  $('form#poll-edit').submit();
+  // location.reload();
+});
+
+
+$("#close-modal2").on("click", function() {
+  console.log("You clicked the close button.");
+
+  $("#modal2").toggle();
+  console.log('pic_id_chosen: ' + $('#poll-vote').val());
+  console.log('poll_id: ' + $('#poll-id').val() );
+  console.log('user_id: ' + $('#poll-user_id').val());
+  console.log('data: ' + $('#poll-user_id').data());
+  $('form#poll-edit').submit();
+  // location.reload();
 });
 
 </script>
