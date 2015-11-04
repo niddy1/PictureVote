@@ -1,4 +1,4 @@
-<h3>all the polls</h3>
+<h3>Click to Vote</h3>
 
 
 
@@ -7,37 +7,33 @@
 <li>----Poll ID:<%=po.id%>----</li>
 <%=po.picture_1_id%> vs. <%=po.picture_2_id%>
 
-
+<!-- Poll Vote Form -->
 
   <form id="poll-edit" action="/polls" method="post">
     <input type="hidden" name="_method" value="put">
-    <select id="poll-vote" class="image-picker show-html picture" name="pollchoice">
+    <select id="poll-vote" name="pollchoice">
         <option disabled selected> -- select an option -- </option>
         <option data-img-src="<%=@pictures[po.picture_1_id - 1].url%>" value='<%=po.picture_1_id%>,one'></option>
         <option data-img-src="<%=@pictures[po.picture_2_id - 1].url%>" value='<%=po.picture_2_id%>,two'></option>
     </select>
     <input id="poll-id" type="hidden" name="poll" value="<%=po.id%>">
     <input id="poll-user_id" type="hidden" name="user[id]" value="<%=@user.id%>">
-    <input id="poll-vote-btn" type="submit" value="Pick">
+
   </form>
 
 
-
+<!-- Two modals for post vote display -->
 <div id="modal">
   <div class="modal-content">
     <span id="close-modal">X</span>
     <div class="modal-body">
-
-
-
         <h3 class="modal-header">Your vote has been logged!</h3>
         <img class="modal-img"src="<%=@pictures[po.picture_1_id - 1].url%>" alt="" />
         <p class="modal-data">
-          <%= po.picture_1_votes + 1%>votes
+          <%= ( ( (po.picture_1_votes + 1.to_f) / ( (po.picture_1_votes + 1.to_f) + po.picture_2_votes.to_f) ) * 100).round(2)%>% of voters agree.
           <br>
-          <%= ( ( (po.picture_1_votes + 1.to_f) / ( (po.picture_1_votes + 1.to_f) + po.picture_2_votes.to_f) ) * 100).round(2)%>% votes
+          <%= po.picture_1_votes + 1%> total votes.
         </p>
-
     </div>
   </div>
 </div>
@@ -46,23 +42,19 @@
   <div class="modal-content">
     <span id="close-modal2">X</span>
     <div class="modal-body">
-
-
         <h3 class="modal-header">Your vote has been logged!</h3>
         <img class="modal-img"src="<%=@pictures[po.picture_2_id - 1].url%>" alt="" />
         <p class="modal-data">
-          <%= po.picture_2_votes + 1%>votes
+          <%= ( ( (po.picture_2_votes + 1.to_f) / ( (po.picture_1_votes + 1.to_f) + po.picture_2_votes.to_f) ) * 100).round(2)%>% of voters agree.
           <br>
-          <%= ( ( (po.picture_2_votes + 1.to_f) / ( (po.picture_1_votes + 1.to_f) + po.picture_2_votes.to_f) ) * 100).round(2)%>% votes
+          <%= po.picture_2_votes + 1%> total votes.
         </p>
-
     </div>
   </div>
 </div>
-
-
-
 <%end%>
+
+
 <script type="text/javascript">
 
 

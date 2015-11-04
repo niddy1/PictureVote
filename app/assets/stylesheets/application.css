@@ -126,3 +126,7 @@
    max-height: 250px;
    margin-left: 12.5%;
  }
+ .modal-data{
+   text-align: center;
+   font-size: 16px;
+ }

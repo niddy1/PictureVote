@@ -2,7 +2,6 @@
 
 <h3>Welcome back <%=@user.username.capitalize%>!</h3>
 
-<%=button_to "Log Out", '/sessions', method: :delete%>
 
 <!-- <form class="new-picture" action="/api/pictures" method="post">
   <input type="text" name="picture[url]" placeholder="..url">
@@ -12,8 +11,11 @@
 <form class="picture-maker" action="/api/pictures" method="post">
   <h5>Image</h5><input type="file" id="url">
   <!-- <h5>Description</h5><input type="text" id="description"> -->
-  <input type="submit">
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
 </form>
+
 <!--
 comment out later -->
 <% @user.pictures.each do |picture| %>
@@ -47,11 +49,11 @@ comment out later -->
   </select>
 </form> -->
 <style media="screen">
-.image_picker_image{
-  width: 150px;
-  height: 150px;
-border: none;
-}
+  .image_picker_image{
+    width: 150px;
+    height: 150px;
+    border: none;
+  }
 </style>
 <%= javascript_include_tag 'image-picker'%>
 <%= javascript_include_tag 'users'%>
