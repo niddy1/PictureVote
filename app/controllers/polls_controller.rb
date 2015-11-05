@@ -5,8 +5,8 @@ class PollsController < ApplicationController
   def index
     authenticate!
     @user = current_user
-    @polls = Poll.all.sample(1)
-    #  @polls = Poll.where.not(user_id: @user.id).sample(1)
+    # @polls = Poll.all.sample(1)
+    @polls = Poll.where.not(user_id: @user.id).sample(1)
     @pictures = Picture.all
   end
 
