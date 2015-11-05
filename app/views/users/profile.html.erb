@@ -1,6 +1,20 @@
 <input type="hidden" id="api-token" value="<%=@user.token%>">
 
-<h3>Welcome back <%=@user.username.capitalize%>!</h3>
+
+<div class="row">
+    <div class="col s8">
+      <h3>Welcome back <%=@user.username.capitalize%>!</h3>
+    </div>
+    <div class="col s4 picture-upload-form">
+        <form class="picture-maker" action="/api/pictures" method="post">
+        <input type="file" id="url" >
+        <!-- <h5>Description</h5><input type="text" id="description"> -->
+        <button class="btn-floating btn-medium waves-effect waves-light #26A69A picture-submit" type="submit" name="action"><i class="material-icons right">add</i>
+        </button>
+        </form>
+    </div>
+</div>
+
 
 
 <!-- <form class="new-picture" action="/api/pictures" method="post">
@@ -8,34 +22,29 @@
   <input type="submit" name="url" value="New Pic">
 </form> -->
 
-<form class="picture-maker" action="/api/pictures" method="post">
-  <h5>Image</h5><input type="file" id="url">
-  <!-- <h5>Description</h5><input type="text" id="description"> -->
-  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    <i class="material-icons right">send</i>
-  </button>
-</form>
-
 <!--
 comment out later -->
-<% @user.pictures.each do |picture| %>
+<!-- <% @user.pictures.each do |picture| %>
   <%=picture.id%>
-  <%end%>
+  <%end%> -->
+<div class="row">
 
 
 <form class="poll-create" action="/polls" method="post">
-  <select class="image-picker show-html picture profile-image-upload" data-limit="2" multiple="multiple" name="poll[]">
+  <select class="image-picker show-html" data-limit="2" multiple="multiple" name="poll[]">
     <% @user.pictures.each do |picture| %>
       <%=picture.id%>
+
       <option data-img-src="<%= picture.url %>" value="<%=picture.id%>"><%=picture.id%></option>
     <% end %>
   </select>
   <input type="hidden" name="user[id]" value="<%=@user.id%>">
   <!-- <input type="hidden" name="poll[user_id]" value="<%=@user.id%>">
   <input type="hidden" name="pollss" value="<%=@user.id%>"> -->
-  <input type="submit" value="Create Poll">
-</form>
 
+  <button class="btn waves-effect waves-light" type="submit" name="action">Create Poll</button>
+</form>
+</div>
 
 <!-- <select class="image-picker show-html" data-limit="2" multiple="multiple">
   <option data-img-src="http://placekitten.com/220/200" value="1">Cute Kitten 1</option>
@@ -48,12 +57,25 @@ comment out later -->
   <select class="image-picker show-html pictures" data-limit="2" multiple="multiple">
   </select>
 </form> -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.poll-create').one('mouseenter', function(){
+      Materialize.toast('Select 2 Images to Create a Poll', 4000);
+    });
+});
+
+
+</script>
 <style media="screen">
   .image_picker_image{
+
     width: 150px;
     height: 150px;
     border: none;
   }
+  /*.thumbnail{
+    width: 100%;
+  }*/
 </style>
 <%= javascript_include_tag 'image-picker'%>
 <%= javascript_include_tag 'users'%>

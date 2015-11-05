@@ -1,11 +1,11 @@
-<h3>Click to Vote</h3>
+<h3 class="index-header">Click to Vote</h3>
 
 
 
 <%@polls.each do |po|%>
-<li>User ID: <%=po.user_id%></li>
+<!-- <li>User ID: <%=po.user_id%></li>
 <li>----Poll ID:<%=po.id%>----</li>
-<%=po.picture_1_id%> vs. <%=po.picture_2_id%>
+<%=po.picture_1_id%> vs. <%=po.picture_2_id%> -->
 
 <!-- Poll Vote Form -->
 
@@ -14,6 +14,7 @@
     <select id="poll-vote" name="pollchoice">
         <option disabled selected> -- select an option -- </option>
         <option data-img-src="<%=@pictures[po.picture_1_id - 1].url%>" value='<%=po.picture_1_id%>,one'></option>
+
         <option data-img-src="<%=@pictures[po.picture_2_id - 1].url%>" value='<%=po.picture_2_id%>,two'></option>
     </select>
     <input id="poll-id" type="hidden" name="poll" value="<%=po.id%>">
@@ -67,7 +68,6 @@ $('#poll-edit').on('click', function(e){
 
 
   if ($('#poll-vote').val().split(',')[1] === 'one' ) {
-    alert('ji')
     $("#modal").toggle();
     // $.ajax({
     //   url: "/polls",

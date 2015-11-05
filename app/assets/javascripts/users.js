@@ -102,8 +102,12 @@ $('form.picture-maker').on('submit', function(e){
     data.url = reader.result;
     allThePictures.create(data);
   }
-
-});
+}
+//Tried to make a callback function that refreshes page after image submission, is NOT working.
+// , function(){
+//    window.location="/users/profile"
+// }
+);
 $(document).ready(function (){
   $(".image_picker_selector").imagepicker({limit: 2})
    hide_select: true

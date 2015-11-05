@@ -1,40 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PictureVote</title>
+  <title>Votograph</title>
 
   <script id="picture-view" type="text/template">
     <option class='picture' data-img-src="<%%=url%>" alt=""> </option>
-         <!-- data-img-src="http://placekitten.com/220/200" -->
+
     <button type="button" class="remove">X</button>
 
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <!-- Compiled and minified JavaScript -->
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
 
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %> -->
 
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
 
 
 </head>
 <body>
   <nav>
+    <script type="text/javascript">
+
+$(document).ready(function(){
+    $(".links").click(function(e){
+      e.preventDefault()
+     window.location=$(this).attr('href');
+    });
+});
+</script>
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#!" class="brand-logo"><%= image_tag("checkimage.png", :alt => "Votograph") %>otograph</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <%if current_user%>
-            <li><a href="/polls">Vote</a></li>
-            <li><a href="/users/profile">Profile</a></li>
-            <li><a href="/users/show">My Polls</a></li>
+            <li><a class="links" href="/polls">Vote</a></li>
+            <li><a class="links"href="/users/profile">Profile</a></li>
+            <li><a class="links"href="/users/show">My Polls</a></li>
             <li><%= link_to "Log Out", '/sessions', method: :delete %></li>
           <%else%>
             <li><a href="/users/log_in">Log In</a></li>
@@ -42,14 +58,21 @@
           <%end%>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">Javascript</a></li>
-          <li><a href="mobile.html">Mobile</a></li>
+          <%if current_user%>
+            <li><a class="links" href="/polls">Vote</a></li>
+            <li><a class="links"href="/users/profile">Profile</a></li>
+            <li><a class="links"href="/users/show">My Polls</a></li>
+            <li><%= link_to "Log Out", '/sessions', method: :delete %></li>
+          <%else%>
+            <li><a href="/users/log_in">Log In</a></li>
+            <li><a href="/users/new">Sign Up</a></li>
+          <%end%>
         </ul>
       </div>
     </nav>
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
