@@ -164,9 +164,9 @@
  .image_picker_selector{
    margin-left: 12%
  }
- .index-header{
-   text-align: center;
- }
- .show-header{
-   text-align: center;
- }
+h3{
+  text-align: center
+}
+.profile-header{
+  text-align: left;
+}
