@@ -36,9 +36,6 @@ $.ajaxSetup({
 //
 // });
 
-
-
-
 //****************************************************************************
 
 var Picture = Backbone.Model.extend({});
@@ -103,12 +100,20 @@ $('form.picture-maker').on('submit', function(e){
     allThePictures.create(data);
   }
 }
+
 //Tried to make a callback function that refreshes page after image submission, is NOT working.
 // , function(){
 //    window.location="/users/profile"
 // }
 );
+
+//materalize toast message
+$('.poll-create').one('mouseenter', function(){
+    Materialize.toast('Refresh After Uploading Image', 2000);
+    Materialize.toast('Select 2 Images to Create a Poll', 3000);
+  });
 $(document).ready(function (){
+  //need this for imagepicker forms to work
   $(".image_picker_selector").imagepicker({limit: 2})
    hide_select: true
    $("select").imagepicker({ selected : function (selected){}, })

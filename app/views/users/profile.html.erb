@@ -22,50 +22,25 @@
   <input type="submit" name="url" value="New Pic">
 </form> -->
 
-<!--
-comment out later -->
 <!-- <% @user.pictures.each do |picture| %>
   <%=picture.id%>
   <%end%> -->
+
+<!-- poll creation form -->
 <div class="row">
-
-
-<form class="poll-create" action="/polls" method="post">
-  <select class="image-picker show-html" data-limit="2" multiple="multiple" name="poll[]">
-    <% @user.pictures.each do |picture| %>
-      <%=picture.id%>
-
-      <option data-img-src="<%= picture.url %>" value="<%=picture.id%>"><%=picture.id%></option>
-    <% end %>
-  </select>
-  <input type="hidden" name="user[id]" value="<%=@user.id%>">
-  <!-- <input type="hidden" name="poll[user_id]" value="<%=@user.id%>">
-  <input type="hidden" name="pollss" value="<%=@user.id%>"> -->
-
-  <button class="btn waves-effect waves-light" type="submit" name="action">Create Poll</button>
-</form>
+  <form class="poll-create" action="/polls" method="post">
+    <select class="image-picker show-html" data-limit="2" multiple="multiple" name="poll[]">
+      <% @user.pictures.each do |picture| %>
+        <%=picture.id%>
+        <option data-img-src="<%= picture.url %>" value="<%=picture.id%>"><%=picture.id%></option>
+      <% end %>
+    </select>
+    <input type="hidden" name="user[id]" value="<%=@user.id%>">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Create Poll</button>
+  </form>
 </div>
 
-<!-- <select class="image-picker show-html" data-limit="2" multiple="multiple">
-  <option data-img-src="http://placekitten.com/220/200" value="1">Cute Kitten 1</option>
-  <option data-img-src="http://placekitten.com/180/200" value="2">Cute Kitten 2</option>
-  <option data-img-src="http://placekitten.com/130/200" value="3">Cute Kitten 3</option>
-  <option data-img-src="http://placekitten.com/270/200" value="4">Cute Kitten 4</option>
-</select> -->
 
-<!-- <form class="" action="index.html" method="post">
-  <select class="image-picker show-html pictures" data-limit="2" multiple="multiple">
-  </select>
-</form> -->
-<script type="text/javascript">
-$(document).ready(function(){
-  $('.poll-create').one('mouseenter', function(){
-      Materialize.toast('Select 2 Images to Create a Poll', 4000);
-    });
-});
-
-
-</script>
 <style media="screen">
   .image_picker_image{
 

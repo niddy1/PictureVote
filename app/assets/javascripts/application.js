@@ -18,4 +18,5 @@
 //= require backbone
 //= require image-picker
 //= require users
+//= require index
 //= require materialize

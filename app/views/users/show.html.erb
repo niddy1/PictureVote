@@ -5,26 +5,30 @@
 <!-- <li>User ID: <%=po.user_id%></li>
 <li>--Poll ID:<%=po.id%>--</li>
 <li>image: <%=po.picture_1_id%> vs. image: <%=po.picture_2_id%></li> -->
+<div class="poll-display">
 
 
-<li class="show-display row">
-  <p class="show-display-text1">
-    <%= ( ( po.picture_1_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>%
-    <br><br><br>
-  </p>
-  <img class="poll-show" src="<%=@pictures[po.picture_1_id - 1].url%> " alt="" />
-  <p class="show-display-text2">
-    vs.
-    <br><br><br>
-  </p>
-  <img class="poll-show" src="<%=@pictures[po.picture_2_id - 1].url%> " alt="" />
-  <p class="show-display-text2">
-    <%= ( ( po.picture_2_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>%
-    <br><br><br>
-  </p>
-
-</li>
-<br>
+  <li class="show-votes-above"><%= po.picture_1_votes%> votes &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= po.picture_2_votes%> votes</li>
+  <li class="show-display row">
+    <p class="show-display-text1">
+      <!-- shows voting %s -->
+      <%= ( ( po.picture_1_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>%
+      <br><br><br>
+    </p>
+    <img class="poll-show" src="<%=@pictures[po.picture_1_id - 1].url%> " alt="" />
+    <p class="show-display-text2">
+      vs.
+      <br><br><br>
+    </p>
+    <img class="poll-show" src="<%=@pictures[po.picture_2_id - 1].url%> " alt="" />
+    <p class="show-display-text2">
+        <!-- shows voting %s -->
+      <%= ( ( po.picture_2_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>%
+      <br><br><br>
+    </p>
+  </li>
+  <br>
+</div>
 
 <!-- <form class="poll-edit" action="/polls" method="post">
   <input type="hidden" name="_method" value="put">

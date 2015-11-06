@@ -19,6 +19,9 @@
    background-color: lightgrey;
    margin-top: 15%;
  }
+ .poll-display{
+   margin-left: 22%;
+ }
 
  .image_picker_image{
    width: 350px;
@@ -153,6 +156,11 @@
    display: inline-block;
    width: 30px;
    font-size: 25px;
+ }
+ .show-votes-above{
+   list-style: none;
+   font-size: 20px;
+   margin-left: 15%;
  }
  ul{
    text-align: center;
