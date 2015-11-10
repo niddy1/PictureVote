@@ -99,13 +99,22 @@ $('form.picture-maker').on('submit', function(e){
     data.url = reader.result;
     allThePictures.create(data);
   }
-}
-
+});
+//Prevents poll creation if 2 images are not selected
+$('.poll-submit').on('click', function(e){
+  e.preventDefault();
+ if ( $(".image-picker").val()[1] )  {
+   $('.poll-create').submit();
+ }
+ else {
+   alert('Please Select 2 Images')
+ }
+});
 //Tried to make a callback function that refreshes page after image submission, is NOT working.
 // , function(){
 //    window.location="/users/profile"
 // }
-);
+
 
 // //materalize toast message
 // $('.poll-create').one('mouseenter', function(){
@@ -118,5 +127,6 @@ $(document).ready(function (){
    hide_select: true
    $("select").imagepicker({ selected : function (selected){}, })
    $(".button-collapse").sideNav();
+
 
 });
