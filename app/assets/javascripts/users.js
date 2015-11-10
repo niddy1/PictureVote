@@ -107,11 +107,11 @@ $('form.picture-maker').on('submit', function(e){
 // }
 );
 
-//materalize toast message
-$('.poll-create').one('mouseenter', function(){
-    Materialize.toast('Refresh After Uploading Image', 2000);
-    Materialize.toast('Select 2 Images to Create a Poll', 3000);
-  });
+// //materalize toast message
+// $('.poll-create').one('mouseenter', function(){
+//     Materialize.toast('Refresh After Uploading Image', 2000);
+//     Materialize.toast('Select 2 Images to Create a Poll', 3000);
+//   });
 $(document).ready(function (){
   //need this for imagepicker forms to work
   $(".image_picker_selector").imagepicker({limit: 2})
