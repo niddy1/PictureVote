@@ -12,8 +12,12 @@
     <%= po.picture_2_votes%> votes</li>
   <li class="show-display row">
     <p class="show-display-text1">
-      <!-- shows voting %s -->
-      <%= ( ( po.picture_1_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>%
+      <!-- shows voting %s accounts for NaN-->
+      <%if (  ( ( po.picture_1_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)  ) >= 0 %>
+        <%=( ( po.picture_1_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>%
+      <%else%>
+        <%="0.0%"%>
+      <%end%>
       <br><br><br>
     </p>
     <img class="poll-show" src="<%=@pictures[po.picture_1_id - 1].url%> " alt="" />
@@ -23,13 +27,18 @@
     </p>
     <img class="poll-show" src="<%=@pictures[po.picture_2_id - 1].url%> " alt="" />
     <p class="show-display-text2">
-        <!-- shows voting %s -->
-      <%= ( ( po.picture_2_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>%
+      <!-- shows voting %s accounts for NaN-->
+        <%if (  ( ( po.picture_2_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)  ) >= 0 %>
+          <%=( ( po.picture_2_votes.to_f / (po.picture_1_votes.to_f+ po.picture_2_votes.to_f) ) * 100).round(2)%>%
+        <%else%>
+          <%="0.0%"%>
+        <%end%>
+
       <br><br><br>
     </p>
 
   </li>
-  <button type="button" class="remove-poll btn-floating red">X</button>
+  <button type="button" class="remove-poll waves-effect waves-light btn-floating red">X</button>
   <br>
 
 </div>

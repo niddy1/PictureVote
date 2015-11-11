@@ -107,7 +107,7 @@ $('.poll-submit').on('click', function(e){
    $('.poll-create').submit();
  }
  else {
-   alert('Please Select 2 Images')
+   alert('Please Select 2 Images');
  }
 });
 //Tried to make a callback function that refreshes page after image submission, is NOT working.
@@ -123,9 +123,9 @@ $('.poll-submit').on('click', function(e){
 //   });
 $(document).ready(function (){
   //need this for imagepicker forms to work
-  $(".image_picker_selector").imagepicker({limit: 2})
+  $(".image_picker_selector").imagepicker({limit: 2});
    hide_select: true
-   $("select").imagepicker({ selected : function (selected){}, })
+   $("select").imagepicker({ selected : function (selected){}, });
    $(".button-collapse").sideNav();
 
 
