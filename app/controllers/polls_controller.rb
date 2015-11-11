@@ -40,6 +40,12 @@ end
     redirect_to '/users/profile'
   end
 
+  def destroy
+    polls = Poll.all
+    poll = polls.destroy(params[:id])
+    render json: {status: 202, message: 'poll deleted'}
+  end
+
   # private
   #
   # def poll_params

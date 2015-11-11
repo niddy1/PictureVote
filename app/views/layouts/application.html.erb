@@ -9,6 +9,15 @@
     <button type="button" class="remove">X</button>
 
   </script>
+  <script id="poll-view" type="text/template">
+    <div class="poll">
+
+    <%%= picture_1_id %>
+    <button type="button" class="remove">X</button>
+    </div>
+
+
+</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -35,7 +44,7 @@
 <body>
   <nav>
     <script type="text/javascript">
-
+//fixes problem where images don't load when using nav bar links.
 $(document).ready(function(){
     $(".links").click(function(e){
       e.preventDefault()
